@@ -38,6 +38,24 @@
 ### 正则表达式
 
 - `s/\s*$//g`：删去行尾有空格，trailing whitespace
+- `s/ /\\r /g`：将空格$\to$换行
+
+```bash
+# 观察一个makefile过程
+make -nB \
+  | grep -ve '^\(\#\|echo\|mkdir\|make\)' \
+  | sed "s#$AM_HOME#\$AM_HOME#g" \
+  | sed "s#$PWD#.#g" \
+  | vim -
+```
+
+- Command line tricks
+  - `make -nB` (RTFM)
+  - grep: 文本过滤，省略了一些干扰项
+    - echo (提示信息), mkdir (目录建立), make (sub-goals)
+  - sed: 让输出更易读
+    - 将绝对路径替换成相对路径
+  - vim: 更舒适的编辑/查看体验
 
 ## 配置
 
