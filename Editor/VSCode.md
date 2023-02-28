@@ -8,7 +8,7 @@
 
 ### 使用技巧
 
-**[锁定组](https://christianheilmann.com/2021/09/08/locking-editor-panes-in-visual-studio-code-helps-unwanted-multi-tab-experiences/)：**The locked group then shows a lock icon and no other files will open as tabs on it, even if it had the focus. 
+**[锁定组](https://christianheilmann.com/2021/09/08/locking-editor-panes-in-visual-studio-code-helps-unwanted-multi-tab-experiences/)**：The locked group then shows a lock icon and no other files will open as tabs on it, even if it had the focus. 
 
 相当于保持改页面作为最“顶”层，不会被新打开的页面覆盖。
 
@@ -66,7 +66,8 @@
 
 ## 插件
 
-- **Reload：**重启软件
-- **Auto Rename Tag：**修改html标签，自动帮你完成尾部闭合标签的同步修改，和webstorm一样。
-- **Material Icon Theme：** 让文件夹图标好看😍
-- **One Dark Pro：** 暗黑主题
+- **Reload**：重启软件
+- **Auto Rename Tag**：修改html标签，自动帮你完成尾部闭合标签的同步修改，和webstorm一样。
+- **Material Icon Theme**：让文件夹图标好看😍
+- **One Dark Pro**：暗黑主题
+- **Git Graph**：在VSCode可视化 Git 版本情况
