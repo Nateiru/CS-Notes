@@ -76,13 +76,13 @@ int main(int argc, char* argv[]) {
 AC_INIT([helloworld], [0.1], [george@thoughtbot.com])
 ```
 
-因为这个项目需要用到 `automake`，所以我们要用下面`[AM_INIT_AUTOMAKE](http://www.gnu.org/software/automake/manual/html_node/Public-Macros.html)宏`来初始化它：
+因为这个项目需要用到 `automake`，所以我们要用下面 [AM_INIT_AUTOMAKE](http://www.gnu.org/software/automake/manual/html_node/Public-Macros.html) 宏来初始化它：
 
 ```makefile
 AM_INIT_AUTOMAKE
 ```
 
-接下来，我们需要告诉 `autoconf`configure 脚本需要的依赖。在这个例子中，configure 需要的只是 C 编译器，我们可以用[AC_PROG_CC](https://www.gnu.org/software/autoconf/manual/autoconf-2.69/html_node/C-Compiler.html)宏命令来设置：
+接下来，我们需要告诉 `autoconf`configure 脚本需要的依赖。在这个例子中，configure 需要的只是 C 编译器，我们可以用 [AC_PROG_CC](https://www.gnu.org/software/autoconf/manual/autoconf-2.69/html_node/C-Compiler.html) 宏命令来设置：
 
 ```makefile
 AC_PROG_CC
@@ -132,7 +132,7 @@ AUTOMAKE_OPTIONS = foreign
 bin_PROGRAMS = helloworld
 ```
 
-上面这行代码其实包含了很多信息，这多亏了 `automake` 的[uniform naming scheme](http://www.gnu.org/software/automake/manual/html_node/Uniform.html)。
+上面这行代码其实包含了很多信息，这多亏了 `automake` 的 [uniform naming scheme](http://www.gnu.org/software/automake/manual/html_node/Uniform.html)。
 
 `PROGRAMS` 称为「primary 主要」字段，它告诉了 `automakehelloworld` 文件的属性。例如这里的 `PROGRAMS` 表示这个文件需要编译，而属性是 `SCRIPTS` 或 `DATA` 的文件则不需要编译。
 
