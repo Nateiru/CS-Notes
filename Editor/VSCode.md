@@ -12,7 +12,7 @@
 
 相当于保持改页面作为最“顶”层，不会被新打开的页面覆盖。
 
-![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/c19a8f5a-9423-4840-a720-b152ac79573d/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230228%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230228T034705Z&X-Amz-Expires=86400&X-Amz-Signature=8765e8f0317ad4bd1bb612fb58d4a3c25d385c274d642c0608394dd039412534&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![锁定组](./images/lock-group.png)
 
 通常打开终端，将其拖到右边，并锁定组如上图右上角有个🔒，那么就能保持终端不会吧别的页面覆盖。
 
@@ -27,11 +27,11 @@
 
 > 冒号来进行分组：`@:`
 
-![https://img-blog.csdnimg.cn/20191115211038104.png](https://img-blog.csdnimg.cn/20191115211038104.png)
+![符号@查找](https://img-blog.csdnimg.cn/20191115211038104.png)
 
 **工作区符号跳转：`Ctrl + t`(下图所示)**
 
-![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4f74aac2-b7d3-482e-88a6-8afd71d2f7f1/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230228%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230228T034745Z&X-Amz-Expires=86400&X-Amz-Signature=f3f16eca9be5db05414632db8da2988b2758403314534624fd346d73babd6e00&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+![符号#查找](./images/find.png)
 
 ### 光标移动
 
