@@ -12,7 +12,7 @@
 
 > 在 Windows Terminal 中 `ctrl+v` 被绑定为贴贴只需要在其配置文件中将 `ctrl+v` 的绑定删去即可，否则在vim模式下按 `ctrl+v` 便是贴贴操作。
 >
-> ![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9b854c7f-d3d8-4303-8e8e-d17570cce961/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230228%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230228T042255Z&X-Amz-Expires=86400&X-Amz-Signature=3254072795fabf5953f3a5b552ace8eff2805674763f8d7f7547b80212745d85&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+> ![Windows Terminal 重置按键](./images/windows-config.png)
 
 - `ctrl+v` 进入块visual模式，然后按大写的 `I` 也就是 `shift+i` 直接在行首插入。
 
