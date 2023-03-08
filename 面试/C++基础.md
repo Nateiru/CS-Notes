@@ -28,3 +28,132 @@
 - 关联式容器（Associative containers）：此为已序群集，元素位置取决于特定的排序准则以及元素值，和插入次序无关。如果你将六个元素置入这样的群集中，它们的位置取决于元素值，和插入次序无关。STL提供了四个关联式容器：集合（set）、多重集合（multiset）、映射（map）和多重映射（multimap）。
 
 对于容器，主要的操作有：容器的建立、插入元素、删除元素、查询、遍历、计算元素个数、检查元素是否为空、输出容器包含的内容。
+
+#### C++17的新特性
+
+1. **结构化绑定（Structured bindings）**：允许从元组、数组、结构体等类型的数据中提取数据成员，并将其绑定到变量上。
+
+```cpp
+struct Point {
+    int x;
+    int y;
+};
+Point p{1, 2};
+auto [x, y] = p;
+std::cout << "x = " << x << ", y = " << y << std::endl;
+```
+
+2. **条件表达式/选择中支持初始化语句**
+
+```cpp
+// c++17
+map<int, string> c = {{1,"a"}};
+// 条件表达式支持初始化语句 if (init; condition)
+if(auto res = c.insert(make_pair(2, "b")); !res.second ) {
+    cout << "key 1 exist" << endl;
+} else {
+    cout << "insert success, value:" << res.first->second << endl;
+}
+// 同时支持选择 switch (init; condition)
+```
+
+3. **折叠表达式**：简化一些复杂的表达式，可以将一系列的表达式进行“折叠”成一个结果
+
+折叠表达式的基本形式为：
+
+```R
+(expression op ...)
+(... op expression)
+```
+
+其中，`expression`是一个可变参数包，`op`是一个二元操作符。
+
+折叠表达式有两种形式：左折叠和右折叠。左折叠是指先对前两个表达式进行操作，然后将结果与下一个表达式继续操作，一直到最后一个表达式为止。右折叠则是从最后一个表达式开始，依次与前面的表达式进行操作，直到第一个表达式为止。
+
+以求和操作为例，假设我们有一个可变参数包`args`，我们可以使用左折叠表达式来计算它们的和：
+
+```cpp
+// 将参数包args中的所有参数依次相加
+template<typename... Args>
+auto sum(Args... args) {
+    return (args + ...); // 左折叠求和
+}
+```
+
+4. **constexpr lambda表达式**：C++17前lambda表达式只能在运行时使用，C++17引入了constexpr lambda表达式，可以用于在编译期进行计算。
+
+```cpp
+int main() { // c++17可编译
+    constexpr auto lamb = [] (int n) { return n * n; };
+    static_assert(lamb(3) == 9, "a");
+}
+```
+
+5. **lambda表达式用*this捕获对象副本**
+
+正常情况下，lambda表达式中访问类的对象成员变量需要捕获this，但是这里捕获的是this指针，指向的是对象的引用，正常情况下可能没问题，但是如果多线程情况下，函数的作用域超过了对象的作用域，对象已经被析构了，还访问了成员变量，就会有问题。
+
+```cpp
+#include <iostream>
+#include <thread>
+#include <vector>
+
+class Foo {
+public:
+    Foo(int val): m_val(val) {}
+
+    void doSomething() {
+        std::thread t([this] {
+            std::cout << "Thread ID: " << std::this_thread::get_id() << ", m_val = " << m_val << std::endl;
+        });
+        t.detach();
+    }
+
+private:
+    int m_val;
+};
+
+int main() {
+    std::vector<Foo> foos;
+    foos.emplace_back(1);
+    foos.emplace_back(2);
+    foos.emplace_back(3);
+
+    for (auto& foo : foos) {
+        foo.doSomething();
+    }
+
+    // Wait for all threads to complete
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    return 0;
+}
+
+```
+
+在上面的例子中，我们定义了一个`Foo`类，其中包含一个`int`类型的成员变量`m_val`，和一个成员函数`doSomething()`。在`doSomething()`函数中，我们创建了一个新线程，其中我们使用了Lambda表达式来打印当前线程的ID和`m_val`的值，Lambda表达式中捕获了`this`指针。
+
+在`main()`函数中，我们创建了一个`std::vector<Foo>`，并向其中添加了三个`Foo`对象，分别使用`1`，`2`和`3`来初始化它们的成员变量`m_val`。接下来，我们使用`for`循环遍历这些对象，并分别调用它们的`doSomething()`函数来启动一个新线程。
+
+但是，由于在创建新线程后，我们立即将其分离，所以这些线程可能在`main()`函数完成之前就完成了。如果这样，`Foo`对象的生命周期将结束，`this`指针将成为悬空指针，而当新线程访问`m_val`成员变量时，就会发生未定义行为。
+
+因此，在使用Lambda表达式访问类的成员变量时，必须确保类对象的生命周期长于Lambda表达式。
+
+所以C++17增加了新特性，捕获*this，不持有this指针，而是持有对象的拷贝，这样生命周期就与对象的生命周期不相关了。
+
+```cpp
+struct A {
+    int a;
+    void func() {
+        auto f = [*this] { // 这里
+            cout << a << endl;
+        };
+        f();
+    }  
+};
+int main() {
+    A a;
+    a.func();
+    return 0;
+}
+```
