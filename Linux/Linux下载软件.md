@@ -1,3 +1,5 @@
+[toc]
+
 # The magic behind configure, make, make install
 
 > 原文：[https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install](https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install)
